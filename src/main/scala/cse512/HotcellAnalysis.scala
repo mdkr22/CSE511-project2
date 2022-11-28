@@ -71,7 +71,7 @@ def runHotcellAnalysis(spark: SparkSession, pointPath: String): DataFrame =
   var gScoreHotCell = adjacentHotcell.withColumn("gScore", gScoreFunc(lit(numCells), col("x"), col("y"), col("z"), col("adjacentHotcell"), col("cellNumber"), lit(avg), lit(stdDev))).orderBy(desc("gScore")).limit(50)
   //gScoreHotCell.show()
 
-  pickupInfo = gScoreHotCell.select(col("x"), col("y"), col("z"), col("gscore"))
+  pickupInfo = gScoreHotCell.select(col("x"), col("y"), col("z"))
 
   return pickupInfo // YOU NEED TO CHANGE THIS PART
 }
